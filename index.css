@@ -1,0 +1,168 @@
+/* If landscape, swap width and height. */
+/* If not A4, change accordingly. (Use inches instead of millimeters if desired.) */
+:root {
+    --page-width: 210mm;
+    --page-height: 297mm;
+    --cells-in-row: 3;
+    --space: 4mm;
+}
+
+@media screen {
+
+    /* allow our body-level elements to utilize horizontal space when it's abundant */
+    body {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: safe flex-start;
+        justify-content: space-between;
+        gap: .5em;
+    }
+
+    #page {
+        /* increase "acutance" of page's perimeter */
+        box-shadow: 0 0 max(var(--page-width), var(--page-height));
+        outline: ridge;
+
+        /* stop unexpected size changes */
+        flex-grow: 0;
+        flex-shrink: 0;
+
+        /* in order to avoid confusing user when a picture has a lot of blank space, make its bounds visible */
+        img {
+            outline: dotted thin color-mix(in srgb, currentColor 25%, transparent);
+            outline-offset: -1px;
+        }
+
+        transition: all 125ms;
+    }
+}
+
+/* stop form's content from misalignment or excessive widening */
+form {
+
+    /* stop our long heading from widening its ancestors */
+    h1 {
+        width: 0;
+        min-width: 100%;
+    }
+
+    /* stop vertical misalignment */
+    /* cancel the "padding" that is byproduct of line-height and the "padding" that prepares space for diacritics (since we know that we don't use them) */
+    /* (technically, 1ic here is invalid because it's a width, but even so it'll probably almost always produce a good enough result (even providing fallback to 1em for free)) */
+    >h1 {
+        margin-block-start: calc(1ic - 1lh);
+    }
+
+    /* stop horizontal misalignment */
+    >* {
+        margin-inline-start: 0;
+    }
+}
+
+/* add a visual distinction to errored inputs
+   (contrary to what is said on MDN at the moment, Firefox doesn't add a red indication (or anything else) to the errored inputs (even after submit attempt or reportValidity call))
+   (based on: https://adrianroselli.com/2019/09/under-engineered-text-boxen.html#Errored ) */
+input:not([type="checkbox"]):not([type="file"]):not([type="image"]):not([type="radio"]):not([type="range"]):user-invalid {
+    background: linear-gradient(135deg, rgba(255, 0, 0, 1) 0, rgba(255, 0, 0, 1) .4em, rgba(255, 255, 255, 1) .4em);
+}
+
+#page {
+    /* emulate the printed page by giving it the size in mm */
+    box-sizing: border-box;
+    width: var(--page-width);
+    height: var(--page-height);
+
+    /* also "in spirit" the page and its content is more like an SVG or a Canvas than a document (or article),
+       so we need to undo (reset) all the outwards layout defaults and do fully inwards layout instead */
+    contain: strict;
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        min-width: 0;
+        min-height: 0;
+    }
+
+    /* distribute our picture copies across the page */
+    display: grid;
+    grid-template-columns: repeat(var(--cells-in-row), 1fr);
+    gap: var(--space);
+    place-items: stretch;
+    padding: var(--space);
+
+    /* center and fit the picture copies (furthermore, force allowing the picture to scale up) */
+    picture,
+    figure {
+        display: flex;
+
+        img {
+            margin: auto;
+            max-height: 25%;
+            max-width: 25%;
+            transform: scale(4);
+        }
+    }
+
+    /* render the caption on top of the page (otherwise it'd had to be outside which would only add complexity to layout) */
+    /* (try to) make it simultaneously semi-transparent, legible (more or less, since it just states the obvious anyway) and non-messy-looking */
+    label,
+    figcaption,
+    p,
+    span {
+        position: absolute;
+        margin-inline: 1mm;
+        opacity: 75%;
+        background-color: currentColor;
+        filter: invert(1);
+
+        >* {
+            /* a trick for better alternative to invert(1) for text specifically (https://stackoverflow.com/a/67593179/776442) */
+            /* (in theory it can be broken at an edge case but it's not important anyway) */
+            filter: saturate(0) grayscale(1) brightness(.7) contrast(1000%) invert(1);
+        }
+    }
+
+    /* the page->page_content hierarchy is purely for simplifying JS code, so just pretend the pictures are directly in #page itself */
+    > :is(output, div) {
+        display: contents;
+    }
+}
+
+/* when printing, keep only our page with pictures */
+@media print {
+
+    /* hide the UI outside of the page */
+    body> :not(#page) {
+        display: none;
+    }
+
+    /* hide the UI (label/caption) inside of the page */
+    #page> :not(:first-child) {
+        display: none;
+    }
+
+    /* get rid of layout above/outside the page too (figuratively, make the page "full-screen") */
+    :is(html, body, main):has(#page) {
+        display: contents;
+    }
+
+    /* however, even when the previous rule is applied, we still need to 100% the height of html (:root) in order for the rest of `*height: <percentage>` to work (at least this how Firefox behaves) */
+    :root {
+        height: 100%;
+    }
+
+    /* Prevent overflow when Print Margins are enabled by user.
+    Without this browser (Firefox at least) will print bugged 2nd picture,
+    which can bring about waste of paper. */
+    #page {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+/*
+Implementation notes:
+
+- Why not `@page` and `size: A4 portrait`?
+  Because of our "emulation" (see CTRL-F "emulate" somewhere above): to do it we'd still have to also specify width and height too, and that would be just redundant.
+*/

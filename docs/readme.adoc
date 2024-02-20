@@ -1,0 +1,28 @@
+== 🖼➡🖼🖼➡🖨 fit few copies of picture on printed page
+
+=== development
+
+"We feel the best way to become a well-rounded and highly-capable web developer is to focus first on learning what the web platform has to offer with as few frameworks and tools added on top as possible."
+-- https://modern-web.dev[Modern Web], "`https://modern-web.dev/guides/going-buildless[Going Buildless]`" https://modern-web.dev/guides/going-buildless/getting-started/[§ Getting Started] (https://github.com/modernweb-dev/web/blob/8c0250c6d844767896360d083e743c5a3edc502a/docs/guides/going-buildless/getting-started.md[permalink])
+
+:experimental:
+This repo is intended to be a sample project about:
+
+* https://modern-web.dev/guides/going-buildless[buildless] (i.e. w/o Node.js or Deno or Bun) small-scale static web dev
+* supporting `+file://+` a.k.a. menu:File[Open File...] a.k.a. kbd:[Ctrl+O] (namely, this https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#troubleshooting[is not compatible with modules], unfortunately)
+* applying drastic changes to printed version (a.k.a. `+@media print+`)
+* having use for the notoriously “shunned” `+reset+` button
+* and--to a small extent--validation, allowing scale-up in `+flex+` in `+grid+`, `+IntersectionObserver+`, `+<output>+`, print margins, units of length, etc.
+
+=== limitations
+
+* PWA support is untested and incomplete
+* accessibility is untested (meant to be hopefully serviceable to sighted screen reader users, partially sighted, etc.)
+
+---
+
+.attributions
+* the placeholder "`https://openmoji.org/library/emoji-E142/#variant=black[picture]`" is designed by https://openmoji.org/library/#author=Kai%20Magnus%20M%C3%BCller[Kai Magnus Müller] and https://openmoji.org/[OpenMoji] – the open-source emoji and icon project; license: https://creativecommons.org/licenses/by-sa/4.0/[CC BY-SA 4.0]
+* the link:favicon.svg[favicon], condensed and repeated, is adapted from "`https://openmoji.org/library/emoji-E142/#variant=black[picture]`" by https://openmoji.org/library/#author=Kai%20Magnus%20M%C3%BCller[Kai Magnus Müller] and https://openmoji.org/[OpenMoji], used under https://creativecommons.org/licenses/by-sa/4.0/[CC BY-SA 4.0]
+
+// spell-checker:enableCompoundWords

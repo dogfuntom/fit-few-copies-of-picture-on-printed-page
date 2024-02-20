@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🖼➡🖼🖼➡🖨 fit few copies of picture on printed page</title>
+    <link rel="icon" href="favicon.svg" />
+    <link rel="manifest" href="manifest.webmanifest" />
+
+    <link href="index.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+
+    <script src="js/picture.js" defer></script>
+    <script src="js/page.js" defer></script>
+    <script src="js/index.js" defer></script>
+  </head>
+
+  <body>
+    <main>
+      <form id="main-form">
+        <h1>fit multiple copies of the same picture onto a single page to print</h1>
+        <noscript>
+          <h2>No Script? <s>No Problem</s></h2>
+          <p>
+            <strong>This webpage can't work without scripts!</strong> (Because it has no server but
+            must change the content in response to your input.)
+          </p>
+          <p>But:</p>
+          <ul>
+            <li>
+              it works without internet (for example, you can open it, disconnect, enable scripts)
+            </li>
+            <li>
+              it can be downloaded or saved (download the (open) source or use
+              <samp>Save page as... → Web page, complete</samp>)
+            </li>
+            <li>
+              if you know basic HTML, you can manually insert your picture multiple times and
+              manually adjust CSS variables (for example, by using your browser's Web Developer
+              Tools)
+            </li>
+          </ul>
+        </noscript>
+        <fieldset>
+          <legend>page</legend>
+          <p>
+            <!-- have to add +2 to size to avoid the up-down buttons touching the content -->
+            <input
+              list="paper-sizes"
+              type="number"
+              id="width"
+              min="26"
+              value="210"
+              max="10000"
+              step="0.1"
+              size="7"
+              required
+            />&NonBreakingSpace;<label for="width">mm width</label>&ThinSpace;&LeftRightArrow;
+            <small>
+              (&approx;&NonBreakingSpace;<output name="width-imperial" for="width" aria-live="off">
+              </output
+              >)
+            </small>
+          </p>
+          <p>
+            <!-- would be nice to use 🔃 here but it looks annoyingly misaligned and aligning it is harder than worth it -->
+            <button type="button" id="swap">swap&ThinSpace;&looparrowleft;</button>
+          </p>
+          <p>
+            <input
+              list="paper-sizes"
+              type="number"
+              id="height"
+              min="26"
+              value="297"
+              max="10000"
+              step="0.1"
+              size="7"
+              required
+            />&NonBreakingSpace;<label for="height">mm height</label>&ThinSpace;&UpDownArrow;
+            <small>
+              (&approx;&NonBreakingSpace;<output
+                name="height-imperial"
+                for="height"
+                aria-live="off"
+              >
+              </output
+              >)
+            </small>
+          </p>
+          <datalist id="paper-sizes">
+            <option value="210" label="A4 width"></option>
+            <option value="215.9" label="Letter width"></option>
+            <option value="279.4" label="Letter height"></option>
+            <option value="297" label="A4 height"></option>
+          </datalist>
+          <details>
+            <summary>tips</summary>
+            <ul>
+              <li>
+                <a href="https://en.wikipedia.org/wiki/Letter_(paper_size)"> Letter paper size </a>
+                is
+                <button type="button" id="ansi-letter">215.9 by 279.4&NonBreakingSpace;mm</button>
+              </li>
+              <li>
+                <a href="https://en.wikipedia.org/wiki/ISO_216#A_series"> A4 paper size </a>
+                is
+                <button type="button" id="iso216-a4">210 by 297&NonBreakingSpace;mm</button>
+              </li>
+              <li>
+                more:
+                <a href="https://en.wikipedia.org/wiki/Paper_size">
+                  Paper size &mdash; Wikipedia
+                </a>
+              </li>
+            </ul>
+          </details>
+        </fieldset>
+        <fieldset>
+          <legend>picture</legend>
+          <p>
+            <input
+              id="picture-file"
+              aria-label="choose (select)"
+              type="file"
+              accept="image/*"
+              required
+            />
+          </p>
+          <p>
+            <input
+              type="number"
+              id="count-of-columns"
+              min="1"
+              max="99"
+              value="3"
+              size="4"
+              required
+            />
+            <label for="count-of-columns">horizontal copies</label>&ThinSpace;&ctdot;
+          </p>
+          <p>
+            <input type="number" id="count-of-rows" min="1" max="99" value="5" size="4" required />
+            <label for="count-of-rows">vertical copies</label>&ThinSpace;&vellip;
+          </p>
+          <p>
+            <input
+              type="number"
+              id="space"
+              min="-10"
+              value="4"
+              max="26.0"
+              size="6"
+              step="0.1"
+              required
+            />&NonBreakingSpace;<label for="space">mm space</label>&ThinSpace;&Proportion;
+            <small>
+              (&approx;&NonBreakingSpace;<output name="space-imperial" for="space" aria-live="off">
+              </output
+              >)
+            </small>
+          </p>
+        </fieldset>
+        <fieldset>
+          <legend>buttons</legend>
+          <button type="reset">reset&ThinSpace;&cross;</button>
+          <button type="submit">print&ThinSpace;&check;</button>
+        </fieldset>
+      </form>
+    </main>
+
+    <label id="page">
+      <!-- instead, could it be more semantic to consider it "complimentary" (i.e. <aside>) content (because technically it's redundant with browser's print preview)? -->
+      <output
+        aria-live="off"
+        form="main-form"
+        for="width height picture-file count-of-columns count-of-rows space"
+      >
+        <template>
+          <picture>
+            <img alt="a copy of the figure/illustration to print" src="picture.svg" />
+          </picture>
+        </template>
+      </output>
+      <p><small>page preview</small></p>
+    </label>
+
+    <footer>
+      <ul>
+        <li>
+          <small>
+            the placeholder
+            <a href="https://openmoji.org/library/emoji-E142/#variant=black">
+              &ldquo;picture&rdquo;</a
+            >
+            is designed by
+            <a href="https://openmoji.org/library/#author=Kai%20Magnus%20M%C3%BCller">
+              Kai Magnus Müller
+            </a>
+            and
+            <a href="https://openmoji.org/">OpenMoji</a>&nbsp;&ndash; the open-source emoji
+            and icon project; license:
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0 </a>
+          </small>
+        </li>
+        <li>
+          <small>
+            the <a href="favicon.svg">favicon</a>, condensed and repeated, is adapted from
+            <a href="https://openmoji.org/library/emoji-E142/#variant=black">
+              &ldquo;picture&rdquo;</a
+            >
+            by
+            <a href="https://openmoji.org/library/#author=Kai%20Magnus%20M%C3%BCller">
+              Kai Magnus Müller
+            </a>
+            and <a href="https://openmoji.org/">OpenMoji</a>, used under
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/"> CC BY-SA 4.0 </a>
+          </small>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

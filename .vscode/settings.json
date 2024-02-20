@@ -1,0 +1,6 @@
+{
+  // Flat configs don't seem to work in pure node_modules-free projects
+  // (namely, can't import/require the globally-installed official package with the recommended config).
+  "eslint.useFlatConfig": false,
+  "asciidoc.antora.enableAntoraSupport": false,
+}

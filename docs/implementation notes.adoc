@@ -1,0 +1,47 @@
+== implementation notes
+
+=== HTML & CSS
+
+==== pictures inside the paper (the page)
+
+The intrinsic size of the user-chosen picture is extraneous because user's printer often have lower DPI than user's screen--thus, the picture should resize to fit in both directions: grow too, not just shrink.
+
+In a perfect world, we could implement this directly -- ``+<img>+``s themselves would be the items of the grid--without pure-utility wrappers. But in can't be done without `+object-fit: contain;+` (or JS). The former works but cause incorrect ``+outline+``s/``+border+``s (which are nice to have to stop pictures with large white spaces from causing confusion). Thus, some wrapper is necessary; and, consequently, may as well choose `+<figure>+` for this job instead of `+<div>+`, just [line-through]#for fun# to be a bit more semantic.
+
+Oddly enough, there's no clean solution, even with a wrapper. Rather--except for JS-[line-through]##mis##using options--we have two choices only:
+
+:fn-zoom: pass:c,q[footnote:[It might be a good idea to investigate `+zoom:+` instead--it seems to be supported widely enough already--the only question remains is whether does it even improve anything in comparison.]]
+
+* use `+scale()+` as a workaround to allow growing--but it also scales the ``+outline:+``{fn-zoom}
+* use `+background-image:+` to work around in simple manner--but it's not quite idiomatic/semantic
+
+Both are likewise hardly clean, so the first one was chosen arbitrary/instinctively (on a whim).
+
+=== JS
+
+==== doing without modules
+
+:experimental:
+
+This project supports `+file://+` (a.k.a. menu:File[Open File…]). But this has its cost--according to MDN contributors in "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules[JavaScript modules]"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#troubleshooting[#Troubleshooting]:
+
+[quote]
+If you try to load the HTML file locally (i.e. with a `+file://+` URL), you'll run into CORS errors due to JavaScript module security requirements.
+
+:fn-globalThis: footnote:[Incidentally, https://exploringjs.com/deep-js/ch_global-scope.html[declarative environment record *≠* globalThis].]
+:fn-eslint-recommended: pass:c,q[footnote:[More accurately, `+eslint:recommended+` (a.k.a. `+js.configs.recommended+`) enables it.]]
+
+However--for the sake of simplicity, readability and compactness--this project disregards the option to surrogate modules with https://en.wikipedia.org/wiki/Immediately_invoked_function_expression[IIFE]s.
+Strictly speaking, this approach pollutes https://exploringjs.com/deep-js/ch_global-scope.html[declarative environment record]{fn-globalThis}.
+But it's not an issue with contemporary tooling.
+For instance, https://eslint.org/docs/latest/rules/no-undef[ESLint’s no-undef] -- which is enabled by default{fn-eslint-recommended} -- disallows using variables from other files;
+moreover, https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html[VS Code's built-in Type Checking JavaScript Files] disallows shadowing such variables.
+This combination eliminates the inherent dangers.
+
+=== docs
+
+The use of AsciiDoc (instead of the usual GFM or MD) is inspired by VSC recommending markdownlint (right in the app's GUI itself), that in turn mentions Ciro Santilli's Markdown Style Guide 4 or more times, that in turn recommends using AsciiDoc for GitHub READMEs and similar circumstances.
+
+=== the rest
+
+Other implementation notes are above the code that they describe. This file is only for such notes that discuss something that happens in multiple files file.

@@ -1,0 +1,7 @@
+semi: false # Inspired by StandardJS (and other people endorsing no-semi approach).
+singleQuote: true # Also inspired by JavaScript Standard Style.
+overrides:
+  - files: "./index.html"
+    # With the default 80 the file is hard to read because of simultaneous abundance of verbose space entities and sentence-forms-like <fieldset>s.
+    options:
+      printWidth: 100

@@ -1,0 +1,33 @@
+{
+  "version": "0.2",
+  "ignorePaths": [
+    "COPYING"
+  ],
+  "words": [
+    "Ciro",
+    "Santilli",
+    "Magnus",
+    "Müller",
+    "OpenMoji"
+  ],
+  "languageSettings": [
+    {
+      "languageId": "yaml",
+      "dictionaries": [
+        "html"
+      ]
+    },
+    {
+      "languageId": "javascript",
+      "dictionaries": [
+        "css"
+      ]
+    },
+    {
+      "languageId": "asciidoc",
+      "dictionaries": [
+        "node"
+      ]
+    }
+  ]
+}

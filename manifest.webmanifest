@@ -1,0 +1,14 @@
+{
+  "name": "fit few copies of picture on printed page",
+  "short_name": "🖼➡🖼🖼➡🖨",
+  "description": "fit multiple copies of the same picture onto a single page to print",
+  "categories": ["utilities"],
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any"
+    }
+  ],
+  "start_url": "/",
+  "display": "minimal-ui"
+}
