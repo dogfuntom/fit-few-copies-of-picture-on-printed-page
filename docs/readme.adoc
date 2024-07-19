@@ -16,7 +16,7 @@ This repo is intended to be a sample project about:
 
 === limitations
 
-* PWA support is untested and incomplete
+* PWA support is, technically, not fully to specificaton--"`a user agent MAY ignore it`" and if it does, the user will see the root of account's GitHub Pages (which is horribly extraneous)
 * accessibility is untested (meant to be hopefully serviceable to sighted screen reader users, partially sighted, etc.)
 
 ---
