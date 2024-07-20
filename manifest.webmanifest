@@ -10,5 +10,12 @@
     }
   ],
   "start_url": "./",
-  "display": "minimal-ui"
+  "display": "minimal-ui",
+  "screenshots": [
+    {
+      "src": "./docs/screenshot.webp",
+      "form_factor": "wide",
+      "label": "default state with a custom image opened"
+    }
+  ]
 }
