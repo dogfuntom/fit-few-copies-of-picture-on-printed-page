@@ -1,5 +1,6 @@
 = 🖼➡🖼🖼➡🖨 fit few copies of picture on printed page
 :figure-caption!:
+:experimental:
 
 .screenshot
 [%collapsible]
@@ -15,7 +16,6 @@
 "We feel the best way to become a well-rounded and highly-capable web developer is to focus first on learning what the web platform has to offer with as few frameworks and tools added on top as possible."
 -- https://modern-web.dev[Modern Web], "`https://modern-web.dev/guides/going-buildless[Going Buildless]`" https://modern-web.dev/guides/going-buildless/getting-started/[§ Getting Started] (https://github.com/modernweb-dev/web/blob/8c0250c6d844767896360d083e743c5a3edc502a/docs/guides/going-buildless/getting-started.md[permalink])
 
-:experimental:
 This repo is intended to be a sample project about:
 
 * https://modern-web.dev/guides/going-buildless[buildless] (i.e. w/o Node.js or Deno or Bun) small-scale static web dev

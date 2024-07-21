@@ -1,4 +1,5 @@
 == implementation notes
+:experimental:
 
 === HTML & CSS
 
@@ -20,8 +21,6 @@ Both are likewise hardly clean, so the first one was chosen arbitrary/instinctiv
 === JS
 
 ==== doing without modules
-
-:experimental:
 
 This project supports `+file://+` (a.k.a. menu:File[Open File…]). But this has its cost--according to MDN contributors in "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules[JavaScript modules]"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#troubleshooting[#Troubleshooting]:
 
