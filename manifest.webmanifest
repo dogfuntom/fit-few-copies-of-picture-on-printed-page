@@ -9,6 +9,14 @@
       "sizes": "any"
     }
   ],
-  "start_url": "/",
-  "display": "minimal-ui"
+  "start_url": "./",
+  "display": "minimal-ui",
+  "screenshots": [
+    {
+      "src": "./docs/screenshot.webp",
+      "sizes": "1280x720",
+      "form_factor": "wide",
+      "label": "default state with a custom image opened"
+    }
+  ]
 }

@@ -28,6 +28,12 @@
       "dictionaries": [
         "node"
       ]
+    },
+    {
+      "languageId": "json",
+      "dictionaries": [
+        "fullstack"
+      ]
     }
   ]
 }
