@@ -24,6 +24,8 @@ This repo is intended to be a sample project about:
 * having use for the notoriously “shunned” `+reset+` button
 * and--to a small extent--validation, allowing scale-up in `+flex+` in `+grid+`, `+IntersectionObserver+`, `+<output>+`, print margins, units of length, etc.
 
+See also: xref:implementation notes{relfilesuffix}[].
+
 == limitations
 
 * PWA support is, technically, not fully to specificaton--"`a user agent MAY ignore it`" and if it does, the user will see the root of account's GitHub Pages (which is horribly extraneous)
