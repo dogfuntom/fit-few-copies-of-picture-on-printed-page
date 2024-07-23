@@ -33,6 +33,6 @@ This repo is intended to be a sample project about:
 
 .attributions
 * the placeholder "`https://openmoji.org/library/emoji-E142/#variant=black[picture]`" is designed by https://openmoji.org/library/#author=Kai%20Magnus%20M%C3%BCller[Kai Magnus Müller] and https://openmoji.org/[OpenMoji] – the open-source emoji and icon project; license: https://creativecommons.org/licenses/by-sa/4.0/[CC BY-SA 4.0]
-* the link:favicon.svg[favicon], condensed and repeated, is adapted from "`https://openmoji.org/library/emoji-E142/#variant=black[picture]`" by https://openmoji.org/library/#author=Kai%20Magnus%20M%C3%BCller[Kai Magnus Müller] and https://openmoji.org/[OpenMoji], used under https://creativecommons.org/licenses/by-sa/4.0/[CC BY-SA 4.0]
+* the link:../favicon.svg[favicon], condensed and repeated, is adapted from "`https://openmoji.org/library/emoji-E142/#variant=black[picture]`" by https://openmoji.org/library/#author=Kai%20Magnus%20M%C3%BCller[Kai Magnus Müller] and https://openmoji.org/[OpenMoji], used under https://creativecommons.org/licenses/by-sa/4.0/[CC BY-SA 4.0]
 
 // spell-checker:enableCompoundWords
