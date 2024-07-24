@@ -5,7 +5,7 @@
   "categories": ["utilities"],
   "icons": [
     {
-      "src": "./favicon.svg",
+      "src": "assets/favicon.svg",
       "sizes": "any"
     }
   ],
