@@ -40,10 +40,12 @@
 /* stop form's content from misalignment or excessive widening */
 form {
 
-    /* stop our long heading from widening its ancestors */
     h1 {
+        /* stop our long heading from widening its ancestors */
         width: 0;
         min-width: 100%;
+        /* make it a bit prettier */
+        font-variant-ligatures: common-ligatures discretionary-ligatures contextual;
     }
 
     /* stop vertical misalignment */
@@ -158,6 +160,14 @@ input:not([type="checkbox"]):not([type="file"]):not([type="image"]):not([type="r
         max-width: 100%;
         max-height: 100%;
     }
+}
+
+footer {
+    text-rendering: optimizeSpeed;
+}
+
+main {
+    text-rendering: optimizeLegibility;
 }
 
 /*
