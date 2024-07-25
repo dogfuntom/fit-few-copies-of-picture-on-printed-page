@@ -16,6 +16,9 @@
 "We feel the best way to become a well-rounded and highly-capable web developer is to focus first on learning what the web platform has to offer with as few frameworks and tools added on top as possible."
 -- https://modern-web.dev[Modern Web], "`https://modern-web.dev/guides/going-buildless[Going Buildless]`" https://modern-web.dev/guides/going-buildless/getting-started/[§ Getting Started] (https://github.com/modernweb-dev/web/blob/8c0250c6d844767896360d083e743c5a3edc502a/docs/guides/going-buildless/getting-started.md[permalink])
 
+// force an empty line because otherwise GitHub renderer lumps together the blockquote above and the paragraph below (unlike VSC renderer but no clue which one is right/wrong here)
+{empty}
+
 This repo is intended to be a sample project about:
 
 * https://modern-web.dev/guides/going-buildless[buildless] (i.e. w/o Node.js or Deno or Bun) small-scale static web dev
@@ -24,7 +27,7 @@ This repo is intended to be a sample project about:
 * having use for the notoriously “shunned” `+reset+` button
 * and--to a small extent--validation, allowing scale-up in `+flex+` in `+grid+`, `+IntersectionObserver+`, `+<output>+`, print margins, units of length, etc.
 
-See also: xref:./implementation notes{relfilesuffix}[].
+See also: xref:./implementation notes{outfilesuffix}[].
 
 == limitations
 
